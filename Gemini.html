@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>壓克力易購網 | 專業壓克力解決方案與 AI 賦能平台</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Inter & Noto Sans TC -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'Noto Sans TC', 'sans-serif'],
+                    },
+                    colors: {
+                        acrylic: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            500: '#10b981',
+                            600: '#059669',
+                            700: '#047857',
+                            900: '#064e3b',
+                            glass: 'rgba(255, 255, 255, 0.75)',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+        .acrylic-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(240,253,244,0.6) 100%);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            transition: all 0.3s ease;
+        }
+        .acrylic-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(16, 185, 129, 0.15), 0 10px 10px -5px rgba(16, 185, 129, 0.04);
+            border-color: rgba(16, 185, 129, 0.5);
+        }
+        .hero-glow {
+            background: radial-gradient(circle, rgba(16,185,129,0.15) 0%, rgba(59,130,246,0.05) 50%, rgba(255,255,255,0) 80%);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-emerald-500 selection:text-white">
+
+    <!-- Navbar -->
+    <header class="fixed top-0 left-0 right-0 z-50 glass-panel border-b border-slate-200/60 shadow-sm transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="#home" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-600 to-teal-400 flex items-center justify-center text-white shadow-md group-hover:scale-105 transition-transform">
+                    <i class="fa-solid fa-cube text-lg"></i>
+                </div>
+                <div>
+                    <span class="text-xl font-bold bg-gradient-to-r from-emerald-700 to-teal-600 bg-clip-text text-transparent">壓克力易購網</span>
+                    <span class="block text-xs text-slate-500 font-medium tracking-wider">Acrylic Solutions & AI</span>
+                </div>
+            </a>
+            
+            <!-- Desktop Nav Links -->
+            <nav class="hidden lg:flex items-center gap-8 text-sm font-medium text-slate-600">
+                <a href="#home" class="hover:text-emerald-600 transition-colors">首頁</a>
+                <a href="#about" class="hover:text-emerald-600 transition-colors">關於我</a>
+                <a href="#services" class="hover:text-emerald-600 transition-colors">解決方案服務</a>
+                <a href="#portfolio" class="hover:text-emerald-600 transition-colors">作品集展示</a>
+                <a href="#blog" class="hover:text-emerald-600 transition-colors">技術部落格</a>
+                <a href="#contact" class="hover:text-emerald-600 transition-colors">聯絡我</a>
+            </nav>
+
+            <div class="hidden lg:flex items-center gap-3">
+                <a href="#ai-consult" class="px-4 py-2 text-xs font-semibold uppercase tracking-wider text-emerald-700 bg-emerald-100 hover:bg-emerald-200 rounded-full transition-colors flex items-center gap-1.5">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i> AI 快速詢價
+                </a>
+                <a href="#contact" class="px-5 py-2.5 text-sm font-semibold text-white bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 rounded-xl shadow-md shadow-emerald-600/20 transition-all hover:scale-[1.02]">
+                    立即諮詢
+                </a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="lg:hidden text-slate-700 hover:text-emerald-600 p-2 focus:outline-none">
+                <i class="fa-solid fa-bars text-2xl"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-white/95 backdrop-blur-md border-b border-slate-200 px-6 py-6 space-y-4 shadow-xl">
+            <a href="#home" class="block text-base font-medium text-slate-700 hover:text-emerald-600">首頁</a>
+            <a href="#about" class="block text-base font-medium text-slate-700 hover:text-emerald-600">關於我</a>
+            <a href="#services" class="block text-base font-medium text-slate-700 hover:text-emerald-600">解決方案服務</a>
+            <a href="#portfolio" class="block text-base font-medium text-slate-700 hover:text-emerald-600">作品集展示</a>
+            <a href="#blog" class="block text-base font-medium text-slate-700 hover:text-emerald-600">技術部落格</a>
+            <a href="#contact" class="block text-base font-medium text-slate-700 hover:text-emerald-600">聯絡我</a>
+            <div class="pt-4 border-t border-slate-100 flex flex-col gap-3">
+                <a href="#ai-consult" class="text-center py-3 bg-emerald-50 text-emerald-700 font-semibold rounded-xl">AI 快速詢價助手</a>
+                <a href="#contact" class="text-center py-3 bg-emerald-600 text-white font-semibold rounded-xl shadow-md">立即線上諮詢</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 1. 首頁 (Hero & Overview) -->
+    <section id="home" class="relative pt-32 pb-20 md:pt-44 md:pb-32 overflow-hidden hero-glow">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-7 space-y-8 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-100 border border-emerald-200 text-emerald-800 text-xs font-semibold uppercase tracking-widest shadow-sm">
+                        <i class="fa-solid fa-shield-halved text-emerald-600"></i> 深耕台灣 20 年・一站式壓克力專家
+                    </div>
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-tight">
+                        透明而多彩，<br>
+                        <span class="bg-gradient-to-r from-emerald-600 via-teal-600 to-blue-600 bg-clip-text text-transparent">讓每個想像完美實現</span>
+                    </h1>
+                    <p class="text-lg text-slate-600 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                        創立於 2005 年，我們結合上游基礎材料與多元應用商品，以「最佳解決方案提供者」為定位，並導入 AI 賦能服務，為設計師、品牌與企業打造精準、高效的壓克力訂製體驗。
+                    </p>
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+                        <a href="#contact" class="w-full sm:w-auto px-8 py-4 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-2xl shadow-xl shadow-emerald-600/25 transition-all hover:scale-105 flex items-center justify-center gap-2">
+                            <span>專案詢價與估價</span>
+                            <i class="fa-solid fa-arrow-right-long"></i>
+                        </a>
+                        <a href="#services" class="w-full sm:w-auto px-8 py-4 bg-white hover:bg-slate-100 text-slate-700 font-semibold rounded-2xl border border-slate-200 shadow-sm transition-all flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-layer-group text-emerald-600"></i> 探索服務項目
+                        </a>
+                    </div>
+                    
+                    <!-- Quick Stats -->
+                    <div class="grid grid-cols-3 gap-6 pt-8 border-t border-slate-200/80 max-w-lg mx-auto lg:mx-0">
+                        <div>
+                            <div class="text-3xl font-extrabold text-slate-900">20+</div>
+                            <div class="text-xs text-slate-500 font-medium mt-1">年產業深耕經驗</div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-extrabold text-slate-900">1,500+</div>
+                            <div class="text-xs text-slate-500 font-medium mt-1">成功商業專案</div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-extrabold text-emerald-600 flex items-center justify-center lg:justify-start gap-1">
+                                <i class="fa-solid fa-wand-magic-sparkles text-sm"></i> AI
+                            </div>
+                            <div class="text-xs text-slate-500 font-medium mt-1">智慧需求賦能</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hero Visual Box -->
+                <div class="lg:col-span-5">
+                    <div class="relative mx-auto max-w-md lg:max-w-none">
+                        <div class="absolute -inset-1.5 bg-gradient-to-r from-emerald-600 to-teal-400 rounded-3xl blur-xl opacity-30 animate-pulse"></div>
+                        <div class="relative acrylic-card rounded-3xl p-8 shadow-2xl space-y-6">
+                            <div class="flex items-center justify-between pb-4 border-b border-emerald-100">
+                                <div class="flex items-center gap-2">
+                                    <div class="w-3 h-3 rounded-full bg-red-400"></div>
+                                    <div class="w-3 h-3 rounded-full bg-yellow-400"></div>
+                                    <div class="w-3 h-3 rounded-full bg-emerald-400"></div>
+                                </div>
+                                <span class="text-xs font-mono text-slate-400">acrylic-hub.tw/solution</span>
+                            </div>
+                            <div class="space-y-4">
+                                <div class="bg-white/80 p-4 rounded-2xl border border-emerald-100 shadow-sm flex items-start gap-3">
+                                    <div class="p-2.5 bg-emerald-100 text-emerald-700 rounded-xl mt-0.5">
+                                        <i class="fa-solid fa-cube text-lg"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-slate-800 text-sm">全系列材料供應</h4>
+                                        <p class="text-xs text-slate-500 mt-0.5">壓克力板、圓管、圓棒、球球與各式罩體，規格齊全。</p>
+                                    </div>
+                                </div>
+                                <div class="bg-white/80 p-4 rounded-2xl border border-emerald-100 shadow-sm flex items-start gap-3">
+                                    <div class="p-2.5 bg-teal-100 text-teal-700 rounded-xl mt-0.5">
+                                        <i class="fa-solid fa-screwdriver-wrench text-lg"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-slate-800 text-sm">精密客製加工</h4>
+                                        <p class="text-xs text-slate-500 mt-0.5">雷射切割、CNC雕刻、熱壓成型與專業黏合技術。</p>
+                                    </div>
+                                </div>
+                                <div class="bg-white/80 p-4 rounded-2xl border border-emerald-100 shadow-sm flex items-start gap-3">
+                                    <div class="p-2.5 bg-blue-100 text-blue-700 rounded-xl mt-0.5">
+                                        <i class="fa-solid fa-comments text-lg"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-slate-800 text-sm">AI 智慧專案規劃</h4>
+                                        <p class="text-xs text-slate-500 mt-0.5">結合大來禮品豐富經驗，提供最速效的企劃與諮詢。</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. 關於我 (About Me & Brand Story) -->
+    <section id="about" class="py-24 bg-white relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                <span class="text-xs font-bold uppercase tracking-widest text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">About Our Brand</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">專業、創新、誠信與親切的完美融合</h2>
+                <p class="text-slate-600 text-base leading-relaxed">
+                    我們深信壓克力不只是材料，更是連結想像、設計與實現的重要媒介。
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6">
+                    <h3 class="text-2xl font-bold text-slate-900 leading-snug">
+                        從 2005 年起，陪伴每一位創作者與品牌把構想穩健落實
+                    </h3>
+                    <p class="text-slate-600 leading-relaxed">
+                        壓克力易購網整合壓克力上游基礎材料與多元應用商品。不論您是設計師、品牌業者、建築與室內規劃者、學校單位、創作者，或正在尋找可靠加工夥伴的企業客戶，我們皆能提供從規格建議、加工製作到客製開發的一站式協助。
+                    </p>
+                    <p class="text-slate-600 leading-relaxed">
+                        本網站由專業壓克力團隊與<strong class="text-slate-900">大來禮品贈品有限公司</strong>共同打造，結合材料、設計、加工與禮贈品整合經驗，全面導入 AI 輔助服務，縮短溝通與反覆修改的時間，實踐綠色環保與資源永續理念。
+                    </p>
+                    <div class="grid sm:grid-cols-2 gap-4 pt-4">
+                        <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200/80">
+                            <h4 class="font-bold text-slate-800 text-sm flex items-center gap-2 mb-1">
+                                <i class="fa-solid fa-check text-emerald-600"></i> 材料與結構平衡
+                            </h4>
+                            <p class="text-xs text-slate-500">精準拿捏尺寸、厚度、透光度與耐候性，確保安全與美感。</p>
+                        </div>
+                        <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200/80">
+                            <h4 class="font-bold text-slate-800 text-sm flex items-center gap-2 mb-1">
+                                <i class="fa-solid fa-check text-emerald-600"></i> AI 賦能數位協作
+                            </h4>
+                            <p class="text-xs text-slate-500">協助整理需求、分析方向並生成概念，減少試作與耗損。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid sm:grid-cols-2 gap-6">
+                    <div class="acrylic-card p-6 rounded-3xl space-y-3">
+                        <div class="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-700 flex items-center justify-center text-xl font-bold">
+                            <i class="fa-solid fa-lightbulb"></i>
+                        </div>
+                        <h4 class="text-lg font-bold text-slate-900">產業前瞻視野</h4>
+                        <p class="text-sm text-slate-600">積極參與台北國際建材展與舉辦設計競賽，串聯材料與設計端。</p>
+                    </div>
+                    <div class="acrylic-card p-6 rounded-3xl space-y-3 mt-0 sm:mt-8">
+                        <div class="w-12 h-12 rounded-2xl bg-teal-100 text-teal-700 flex items-center justify-center text-xl font-bold">
+                            <i class="fa-solid fa-handshake"></i>
+                        </div>
+                        <h4 class="text-lg font-bold text-slate-900">值得信賴夥伴</h4>
+                        <p class="text-sm text-slate-600">秉持誠信、積極與親切的服務精神，陪伴您走過每個專案挑戰。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. 壓克力解決方案服務 (Services & Solutions) -->
+    <section id="services" class="py-24 bg-slate-50 relative border-y border-slate-200/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                <span class="text-xs font-bold uppercase tracking-widest text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">Comprehensive Services</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">壓克力全方位解決方案服務</h2>
+                <p class="text-slate-600 text-base leading-relaxed">
+                    從選材建議、精密加工到商業展示與特殊品項開發，提供一站式完美服務。
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-200 hover:shadow-xl transition-all group">
+                    <div class="w-14 h-14 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-2xl mb-6 group-hover:bg-emerald-600 group-hover:text-white transition-colors">
+                        <i class="fa-solid fa-sliders"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">材料選型建議</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        針對不同使用環境與預算，提供板材厚度、透光率、抗UV、耐衝擊與顏色挑選之專業評估與建議。
+                    </p>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-200 hover:shadow-xl transition-all group">
+                    <div class="w-14 h-14 rounded-2xl bg-teal-50 text-teal-600 flex items-center justify-center text-2xl mb-6 group-hover:bg-teal-600 group-hover:text-white transition-colors">
+                        <i class="fa-solid fa-gears"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">客製加工與製作</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        提供雷射切割、CNC雕刻、鑽孔、拋光、熱壓成型與無痕膠合，精準實現各種複雜幾何造型。
+                    </p>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-200 hover:shadow-xl transition-all group">
+                    <div class="w-14 h-14 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center text-2xl mb-6 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                        <i class="fa-solid fa-store"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">展示、空間與商業應用</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        專為零售門市、展覽櫃位、品牌展示架、獎牌獎座與室內隔屏打造吸睛且耐用的商業空間美學。
+                    </p>
+                </div>
+
+                <!-- Service 4 -->
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-200 hover:shadow-xl transition-all group">
+                    <div class="w-14 h-14 rounded-2xl bg-purple-50 text-purple-600 flex items-center justify-center text-2xl mb-6 group-hover:bg-purple-600 group-hover:text-white transition-colors">
+                        <i class="fa-solid fa-circle-dot"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">特殊品項（圓管、球罩等）</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        提供各式壓克力圓管、圓棒、半球罩、全圓球、採光罩與透明防護罩，滿足特殊工程與設計需求。
+                    </p>
+                </div>
+
+                <!-- Service 5 -->
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-200 hover:shadow-xl transition-all group">
+                    <div class="w-14 h-14 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center text-2xl mb-6 group-hover:bg-amber-600 group-hover:text-white transition-colors">
+                        <i class="fa-solid fa-file-invoice-dollar"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">專案諮詢與報價流程</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        標準化且透明的報價流程，支援圖面評估、打樣測試到大量量產，確保專案如期如質交付。
+                    </p>
+                </div>
+
+                <!-- Service 6 -->
+                <div class="bg-emerald-900 text-white p-8 rounded-3xl shadow-lg border border-emerald-800 flex flex-col justify-between">
+                    <div>
+                        <div class="w-14 h-14 rounded-2xl bg-emerald-800 text-emerald-300 flex items-center justify-center text-2xl mb-6">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">AI 智慧賦能協作</h3>
+                        <p class="text-sm text-emerald-100/80 leading-relaxed">
+                            運用 AI 快速釐清設計需求、分析加工可行性與生成企劃案，讓您的構想更快落地實現。
+                        </p>
+                    </div>
+                    <a href="#ai-consult" class="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-emerald-300 hover:text-white transition-colors">
+                        <span>體驗 AI 詢價小幫手</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. 作品集／案例展示 (Portfolio & Case Studies) -->
+    <section id="portfolio" class="py-24 bg-white relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16">
+                <div class="space-y-4">
+                    <span class="text-xs font-bold uppercase tracking-widest text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">Portfolio & Cases</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">精選作品與產業應用案例</h2>
+                </div>
+                <div class="mt-6 md:mt-0 flex flex-wrap gap-2">
+                    <button class="filter-btn px-4 py-2 text-xs font-semibold rounded-xl bg-emerald-600 text-white shadow-sm" data-filter="all">全部案例</button>
+                    <button class="filter-btn px-4 py-2 text-xs font-semibold rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700" data-filter="commercial">商業展示</button>
+                    <button class="filter-btn px-4 py-2 text-xs font-semibold rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700" data-filter="interior">建築室內</button>
+                    <button class="filter-btn px-4 py-2 text-xs font-semibold rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700" data-filter="custom">客製加工</button>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Case 1 -->
+                <div class="portfolio-item group bg-slate-50 rounded-3xl overflow-hidden border border-slate-200/80 shadow-sm hover:shadow-xl transition-all" data-category="commercial">
+                    <div class="relative h-64 overflow-hidden bg-slate-200">
+                        <img src="https://placehold.co/600x400/e2e8f0/1e293b?text=Commercial+Display" alt="商業展示" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/600x400/10b981/ffffff?text=Acrylic+Display'">
+                        <div class="absolute top-4 left-4">
+                            <span class="px-3 py-1 text-xs font-semibold bg-white/90 backdrop-blur-md text-emerald-800 rounded-full">商業展示與零售</span>
+                        </div>
+                    </div>
+                    <div class="p-6 space-y-3">
+                        <h3 class="text-xl font-bold text-slate-900">精品美妝品牌多層次展示架</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            運用高透光壓克力結合雷射雕刻與LED導光設計，突顯產品高級感，滿足專櫃品牌嚴苛的視覺要求。
+                        </p>
+                        <div class="pt-4 border-t border-slate-200/60 flex items-center justify-between text-xs font-medium text-slate-500">
+                            <span>客戶需求：高質感、透光無痕</span>
+                            <span class="text-emerald-600 font-semibold">完美交付</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Case 2 -->
+                <div class="portfolio-item group bg-slate-50 rounded-3xl overflow-hidden border border-slate-200/80 shadow-sm hover:shadow-xl transition-all" data-category="interior">
+                    <div class="relative h-64 overflow-hidden bg-slate-200">
+                        <img src="https://placehold.co/600x400/e2e8f0/1e293b?text=Interior+Design" alt="室內設計" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/600x400/0ea5e9/ffffff?text=Interior+Partition'">
+                        <div class="absolute top-4 left-4">
+                            <span class="px-3 py-1 text-xs font-semibold bg-white/90 backdrop-blur-md text-teal-800 rounded-full">建築與室內設計</span>
+                        </div>
+                    </div>
+                    <div class="p-6 space-y-3">
+                        <h3 class="text-xl font-bold text-slate-900">現代辦公室霧面隔屏與導光牆</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            採用霧面砂磨壓克力板搭配圓管結構，兼具隱私性與空間穿透感，打造符合綠建築標準的舒適辦公環境。
+                        </p>
+                        <div class="pt-4 border-t border-slate-200/60 flex items-center justify-between text-xs font-medium text-slate-500">
+                            <span>客戶需求：採光、隱私、結構安全</span>
+                            <span class="text-emerald-600 font-semibold">完美交付</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Case 3 -->
+                <div class="portfolio-item group bg-slate-50 rounded-3xl overflow-hidden border border-slate-200/80 shadow-sm hover:shadow-xl transition-all" data-category="custom">
+                    <div class="relative h-64 overflow-hidden bg-slate-200">
+                        <img src="https://placehold.co/600x400/e2e8f0/1e293b?text=Custom+Fabrication" alt="客製加工" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/600x400/8b5cf6/ffffff?text=Custom+Dome'">
+                        <div class="absolute top-4 left-4">
+                            <span class="px-3 py-1 text-xs font-semibold bg-white/90 backdrop-blur-md text-purple-800 rounded-full">客製加工產品</span>
+                        </div>
+                    </div>
+                    <div class="p-6 space-y-3">
+                        <h3 class="text-xl font-bold text-slate-900">特殊精密儀器透明保護防塵罩</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            運用真空成型技術打造大尺寸半球罩與無縫黏合技術，完美契合工業儀器規格，兼顧防塵與檢視功能。
+                        </p>
+                        <div class="pt-4 border-t border-slate-200/60 flex items-center justify-between text-xs font-medium text-slate-500">
+                            <span>客戶需求：高精度、耐候、密合</span>
+                            <span class="text-emerald-600 font-semibold">完美交付</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI 互動輔助專區 (AI Consultation & Estimator) -->
+    <section id="ai-consult" class="py-20 bg-gradient-to-b from-emerald-900 to-slate-900 text-white relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#10b981_1px,transparent_1px)] [background-size:16px_16px]"></div>
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="bg-white/10 backdrop-blur-xl rounded-3xl p-8 sm:p-12 border border-white/20 shadow-2xl">
+                <div class="text-center max-w-2xl mx-auto mb-10 space-y-3">
+                    <span class="px-3 py-1 bg-emerald-500/30 border border-emerald-400/40 text-emerald-300 rounded-full text-xs font-bold uppercase tracking-widest inline-flex items-center gap-1.5">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i> AI 智能專案與報價顧問
+                    </span>
+                    <h2 class="text-3xl font-extrabold tracking-tight">描述您的想法，讓 AI 為您規劃解決方案</h2>
+                    <p class="text-slate-300 text-sm">
+                        輸入您的專案構想或材料需求，AI 將結合大來禮品與壓克力易購網專業資料庫，即時提供初步規格建議與製作方向。
+                    </p>
+                </div>
+
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-emerald-300 uppercase tracking-wider mb-2">請輸入您的專案需求或構想描述：</label>
+                        <textarea id="ai-prompt-input" rows="3" class="w-full bg-slate-900/80 border border-slate-700 rounded-2xl p-4 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-emerald-500 transition-colors" placeholder="例如：我需要一個尺寸 30x20x40cm 的透明壓克力展示盒，搭配LED燈條，用來展示公仔，請問材質厚度建議與預估方向？"></textarea>
+                    </div>
+                    <div class="flex justify-end">
+                        <button id="ai-generate-btn" onclick="handleAiConsult()" class="px-6 py-3 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white font-bold rounded-xl shadow-lg shadow-emerald-500/30 transition-all flex items-center gap-2 text-sm">
+                            <i class="fa-solid fa-sparkles"></i>
+                            <span id="ai-btn-text">生成 AI 專案建議</span>
+                        </button>
+                    </div>
+
+                    <!-- AI Result Display Box -->
+                    <div id="ai-result-box" class="hidden mt-6 p-6 bg-slate-900/90 rounded-2xl border border-emerald-500/40 space-y-4">
+                        <div class="flex items-center gap-2 text-emerald-400 font-bold text-sm">
+                            <i class="fa-solid fa-robot"></i>
+                            <span>AI 智慧評估建議結果：</span>
+                        </div>
+                        <div id="ai-result-content" class="text-sm text-slate-200 leading-relaxed space-y-2">
+                            <!-- Dynamically populated -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. 技術部落格 (Technical Blog) -->
+    <section id="blog" class="py-24 bg-slate-50 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                <span class="text-xs font-bold uppercase tracking-widest text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">Technical Knowledge & Insights</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">技術部落格與產業新知</h2>
+                <p class="text-slate-600 text-base leading-relaxed">
+                    深入了解壓克力材料特性、加工安裝技巧、公差規範與 AI 跨界應用的最新趨勢。
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Blog 1 -->
+                <article class="bg-white rounded-3xl overflow-hidden border border-slate-200/80 shadow-sm hover:shadow-xl transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="relative h-48 bg-slate-200 overflow-hidden">
+                            <img src="https://placehold.co/600x350/e2e8f0/1e293b?text=Acrylic+Material+Knowledge" alt="材料知識" class="w-full h-full object-cover">
+                            <div class="absolute top-4 left-4">
+                                <span class="px-3 py-1 text-xs font-semibold bg-white/90 backdrop-blur-md text-emerald-800 rounded-full">材料知識</span>
+                            </div>
+                        </div>
+                        <div class="p-6 space-y-3">
+                            <div class="text-xs text-slate-400 font-medium">2026.03.15 · 閱讀時間約 4 分鐘</div>
+                            <h3 class="text-lg font-bold text-slate-900 hover:text-emerald-600 transition-colors">
+                                <a href="#blog">壓克力板材怎麼選？透光率、耐候性與厚度規格完全解析</a>
+                            </h3>
+                            <p class="text-sm text-slate-600 leading-relaxed">
+                                壓克力（PMMA）具備極佳的透光與耐衝擊性。本文為您解析押出板與澆鑄板的差異及應用場景。
+                            </p>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-0">
+                        <a href="#blog" class="inline-flex items-center gap-1.5 text-sm font-semibold text-emerald-600 hover:text-emerald-700">
+                            <span>閱讀完整文章</span>
+                            <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Blog 2 -->
+                <article class="bg-white rounded-3xl overflow-hidden border border-slate-200/80 shadow-sm hover:shadow-xl transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="relative h-48 bg-slate-200 overflow-hidden">
+                            <img src="https://placehold.co/600x350/e2e8f0/1e293b?text=Processing+Tips" alt="加工技巧" class="w-full h-full object-cover">
+                            <div class="absolute top-4 left-4">
+                                <span class="px-3 py-1 text-xs font-semibold bg-white/90 backdrop-blur-md text-teal-800 rounded-full">加工與安裝</span>
+                            </div>
+                        </div>
+                        <div class="p-6 space-y-3">
+                            <div class="text-xs text-slate-400 font-medium">2026.02.28 · 閱讀時間约 5 分鐘</div>
+                            <h3 class="text-lg font-bold text-slate-900 hover:text-emerald-600 transition-colors">
+                                <a href="#blog">避免破裂與氣泡！壓克力無痕黏合與雷射切割保養技巧</a>
+                            </h3>
+                            <p class="text-sm text-slate-600 leading-relaxed">
+                                探討專用氯仿黏合劑的施作要領，以及日常清潔與抗刮保養注意事項，延長壓克力製品壽命。
+                            </p>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-0">
+                        <a href="#blog" class="inline-flex items-center gap-1.5 text-sm font-semibold text-emerald-600 hover:text-emerald-700">
+                            <span>閱讀完整文章</span>
+                            <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Blog 3 -->
+                <article class="bg-white rounded-3xl overflow-hidden border border-slate-200/80 shadow-sm hover:shadow-xl transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="relative h-48 bg-slate-200 overflow-hidden">
+                            <img src="https://placehold.co/600x350/e2e8f0/1e293b?text=AI+Industry+Trend" alt="AI趨勢" class="w-full h-full object-cover">
+                            <div class="absolute top-4 left-4">
+                                <span class="px-3 py-1 text-xs font-semibold bg-white/90 backdrop-blur-md text-purple-800 rounded-full">產業趨勢與 AI</span>
+                            </div>
+                        </div>
+                        <div class="p-6 space-y-3">
+                            <div class="text-xs text-slate-400 font-medium">2026.01.10 · 閱讀時間约 6 分鐘</div>
+                            <h3 class="text-lg font-bold text-slate-900 hover:text-emerald-600 transition-colors">
+                                <a href="#blog">AI 如何革新訂製製造？從需求釐清到展示設計的智慧轉型</a>
+                            </h3>
+                            <p class="text-sm text-slate-600 leading-relaxed">
+                                結合大來禮品與壓克力易購網經驗，探討生成式 AI 在縮短溝通試作、降低資源耗損上的具體應用。
+                            </p>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-0">
+                        <a href="#blog" class="inline-flex items-center gap-1.5 text-sm font-semibold text-emerald-600 hover:text-emerald-700">
+                            <span>閱讀完整文章</span>
+                            <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. 聯絡我與線上詢價 (Contact & Inquiry) -->
+    <section id="contact" class="py-24 bg-white relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-12 gap-12">
+                <!-- Info Column -->
+                <div class="lg:col-span-5 space-y-8">
+                    <div class="space-y-4">
+                        <span class="text-xs font-bold uppercase tracking-widest text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">Contact Us</span>
+                        <h2 class="text-3xl font-extrabold text-slate-900 tracking-tight">準備好開始您的壓克力專案了嗎？</h2>
+                        <p class="text-slate-600 text-sm leading-relaxed">
+                            無論是現成板材選購、大量批發、商業展示訂製或禮贈品開發，我們的專業團隊隨時準備為您提供最佳解決方案。
+                        </p>
+                    </div>
+
+                    <div class="space-y-6">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-700 flex items-center justify-center text-lg shrink-0 mt-1">
+                                <i class="fa-solid fa-phone"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 text-sm">聯絡電話</h4>
+                                <p class="text-slate-600 text-sm mt-0.5">02-2345-6789 / 0912-345-678</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-2xl bg-teal-100 text-teal-700 flex items-center justify-center text-lg shrink-0 mt-1">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 text-sm">電子信箱</h4>
+                                <p class="text-slate-600 text-sm mt-0.5">service@acrylic-hub.tw</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-2xl bg-blue-100 text-blue-700 flex items-center justify-center text-lg shrink-0 mt-1">
+                                <i class="fa-brands fa-line"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 text-sm">官方 LINE 諮詢</h4>
+                                <p class="text-slate-600 text-sm mt-0.5">@acrylic_hub (即時線上圖面討論)</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-2xl bg-purple-100 text-purple-700 flex items-center justify-center text-lg shrink-0 mt-1">
+                                <i class="fa-solid fa-clock"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 text-sm">服務與回覆時間</h4>
+                                <p class="text-slate-600 text-sm mt-0.5">週一至週五 09:00 - 18:00 (線上表單於 24 小時內回覆)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Form Column -->
+                <div class="lg:col-span-7 bg-slate-50 p-8 sm:p-10 rounded-3xl border border-slate-200/80 shadow-sm">
+                    <form id="inquiry-form" onsubmit="handleFormSubmit(event)" class="space-y-6">
+                        <div class="grid sm:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2">您的姓名 / 稱呼 *</label>
+                                <input type="text" required class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-slate-800 text-sm focus:outline-none focus:border-emerald-500 transition-colors" placeholder="例如：王先生 / 設計總監">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2">聯絡電話 *</label>
+                                <input type="tel" required class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-slate-800 text-sm focus:outline-none focus:border-emerald-500 transition-colors" placeholder="例如：0912-345678">
+                            </div>
+                        </div>
+
+                        <div class="grid sm:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2">電子信箱 *</label>
+                                <input type="email" required class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-slate-800 text-sm focus:outline-none focus:border-emerald-500 transition-colors" placeholder="name@company.com">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2">需求服務分類</label>
+                                <select class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-slate-800 text-sm focus:outline-none focus:border-emerald-500 transition-colors">
+                                    <option>材料規格詢問與裁切</option>
+                                    <option>客製化加工製作</option>
+                                    <option>商業展示與零售道具</option>
+                                    <option>特殊品項（圓管、球罩、採光罩）</option>
+                                    <option>AI 智慧專案企劃合作</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2">專案需求詳細說明 *</label>
+                            <textarea required rows="4" class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-slate-800 text-sm focus:outline-none focus:border-emerald-500 transition-colors" placeholder="請描述尺寸、厚度、數量、預算或特殊加工需求..."></textarea>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2">上傳圖面或需求檔案 (PDF / CAD / JPG)</label>
+                            <div class="border-2 border-dashed border-slate-300 rounded-2xl p-6 text-center hover:border-emerald-500 transition-colors bg-white cursor-pointer">
+                                <i class="fa-solid fa-cloud-arrow-up text-3xl text-emerald-600 mb-2"></i>
+                                <p class="text-sm font-medium text-slate-700">點擊或拖曳檔案至此上傳</p>
+                                <p class="text-xs text-slate-400 mt-1">支援檔案大小最高 20MB</p>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="w-full py-4 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl shadow-lg shadow-emerald-600/20 transition-all flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-paper-plane"></i>
+                            <span>送出線上詢價與檔案</span>
+                        </button>
+                    </form>
+
+                    <!-- Success Message Box -->
+                    <div id="form-success-alert" class="hidden mt-6 p-6 bg-emerald-50 border border-emerald-200 text-emerald-800 rounded-2xl flex items-center gap-3">
+                        <i class="fa-solid fa-circle-check text-2xl text-emerald-600"></i>
+                        <div>
+                            <h4 class="font-bold text-sm">詢價單已成功送出！</h4>
+                            <p class="text-xs mt-0.5 text-emerald-700">感謝您的諮詢，我們將於 24 小時內指派專業專案經理與您聯繫。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-16 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+                <div class="space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-emerald-600 to-teal-400 flex items-center justify-center text-white shadow-md">
+                            <i class="fa-solid fa-cube"></i>
+                        </div>
+                        <span class="text-lg font-bold text-white">壓克力易購網</span>
+                    </div>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        創立於 2005 年，深耕台灣壓克力產業。結合大來禮品贈品有限公司經驗，打造一站式壓克力材料、加工與 AI 智慧賦能解決方案平台。
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold text-sm mb-4">導覽地圖</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="#home" class="hover:text-emerald-400 transition-colors">首頁主視覺</a></li>
+                        <li><a href="#about" class="hover:text-emerald-400 transition-colors">關於我與品牌理念</a></li>
+                        <li><a href="#services" class="hover:text-emerald-400 transition-colors">解決方案與服務</a></li>
+                        <li><a href="#portfolio" class="hover:text-emerald-400 transition-colors">作品集與案例展示</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold text-sm mb-4">專業服務</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="#services" class="hover:text-emerald-400 transition-colors">材料選型建議</a></li>
+                        <li><a href="#services" class="hover:text-emerald-400 transition-colors">客製加工與製作</a></li>
+                        <li><a href="#ai-consult" class="hover:text-emerald-400 transition-colors">AI 智慧專案規劃</a></li>
+                        <li><a href="#blog" class="hover:text-emerald-400 transition-colors">技術部落格 Q&A</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold text-sm mb-4">營業資訊</h4>
+                    <p class="text-xs leading-relaxed space-y-1">
+                        <span>大來禮品贈品有限公司合作打造</span><br>
+                        <span>服務專線：02-2345-6789</span><br>
+                        <span>客服信箱：service@acrylic-hub.tw</span><br>
+                        <span>地址：台灣台北市信義區示範路 88 號</span>
+                    </p>
+                </div>
+            </div>
+
+            <div class="pt-8 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between text-xs">
+                <p>&copy; 2005 - 2026 壓克力易購網 All Rights Reserved.</p>
+                <p class="mt-4 sm:mt-0">Designed with Professional Acrylic & AI Solutions.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Script Logic -->
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu on click
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Portfolio Filtering
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => {
+                    b.classList.remove('bg-emerald-600', 'text-white');
+                    b.classList.add('bg-slate-100', 'text-slate-700');
+                });
+                btn.classList.remove('bg-slate-100', 'text-slate-700');
+                btn.classList.add('bg-emerald-600', 'text-white');
+
+                const filter = btn.getAttribute('data-filter');
+                portfolioItems.forEach(item => {
+                    if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // AI Consult Simulation using Gemini API or fallback smart logic
+        async function handleAiConsult() {
+            const promptInput = document.getElementById('ai-prompt-input').value.trim();
+            const resultBox = document.getElementById('ai-result-box');
+            const resultContent = document.getElementById('ai-result-content');
+            const btnText = document.getElementById('ai-btn-text');
+
+            if (!promptInput) {
+                alert('請先輸入您的專案構想或需求描述！');
+                return;
+            }
+
+            btnText.innerText = 'AI 運算與方案生成中...';
+            resultBox.classList.remove('hidden');
+            resultContent.innerHTML = `<div class="flex items-center gap-2 text-emerald-400"><i class="fa-solid fa-spinner fa-spin"></i> 正在結合壓克力材料與大來禮品資料庫進行深度評估...</div>`;
+
+            try {
+                const systemPrompt = "你是一位擁有 20 年以上經驗的壓克力加工與禮贈品專家，結合大來禮品贈品有限公司的經驗。請針對使用者的需求，提供結構化的專業建議，包含：1. 建議板材與厚度規格 2. 加工與黏合注意事項 3. 預估執行方向。語氣專業、親切且具建設性。";
+                const apiKey = "";
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${apiKey}`;
+
+                const payload = {
+                    contents: [{ parts: [{ text: promptInput }] }],
+                    systemInstruction: { parts: [{ text: systemPrompt }] }
+                };
+
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                const result = await response.json();
+                const candidate = result.candidates?.[0];
+
+                if (candidate && candidate.content?.parts?.[0]?.text) {
+                    const text = candidate.content.parts[0].text;
+                    resultContent.innerHTML = `<div class="prose prose-invert text-sm">${text.replace(/\n/g, '<br>')}</div>`;
+                } else {
+                    throw new Error('Invalid response structure');
+                }
+            } catch (error) {
+                // Fallback intelligent response if API key is not configured or network fails
+                resultContent.innerHTML = `
+                    <div class="space-y-3">
+                        <p class="font-bold text-emerald-300">【AI 專案建議評估報告】</p>
+                        <p>針對您的專案需求 <strong class="text-white">“${promptInput}”</strong>，我們的專業團隊初步建議如下：</p>
+                        <ul class="list-disc pl-5 space-y-1 text-slate-300 text-xs">
+                            <li><strong>材料推薦：</strong>建議採用台灣產高品質 5mm 晶透壓克力板，兼顧結構支撐度與完美透光率。</li>
+                            <li><strong>加工工法：</strong>建議使用雷射切割外型搭配無痕氯仿膠合，邊緣拋光處理以達最佳展示質感。</li>
+                            <li><strong>優化方向：</strong>若需整合燈光，可於底部預留導光槽，由大來禮品團隊協助進行整體禮贈品或展示盒包裝規劃。</li>
+                        </ul>
+                        <p class="text-xs text-emerald-400 pt-2">💡 建議您直接填寫下方線上詢價表單或透過 LINE 上傳設計圖面，我們將為您提供精確報價。</p>
+                    </div>
+                `;
+            } finally {
+                btnText.innerText = '生成 AI 專案建議';
+            }
+        }
+
+        // Form Submit Handler
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const form = document.getElementById('inquiry-form');
+            const successAlert = document.getElementById('form-success-alert');
+            
+            form.style.display = 'none';
+            successAlert.classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
